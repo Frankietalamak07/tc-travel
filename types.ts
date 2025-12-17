@@ -18,6 +18,7 @@ export interface ChatMessage {
 
 export enum Section {
   HOME = 'home',
+  ABOUT = 'about',
   BLOG = 'blog',
   BOOKING = 'booking',
   AI_GUIDE = 'ai-guide',

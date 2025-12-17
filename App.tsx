@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { SeasonalFeature } from './components/SeasonalFeature';
+import { AboutSection } from './components/AboutSection';
 import { BlogSection } from './components/BlogSection';
 import { BookingPromo } from './components/BookingPromo';
 import { Testimonials } from './components/Testimonials';
@@ -31,7 +32,7 @@ const App: React.FC = () => {
       <SEO 
         title="TC Travel Asia | Premium Philippines Travel & AI Planner"
         description="Experience the Philippines like never before. Use our AI travel planner for custom itineraries and discover trusted long-term stay options with HippoHomes PH."
-        keywords="Philippines Travel, AI Travel Planner, HippoHomes PH, Boracay, Palawan, Siargao, Luxury Real Estate Philippines, Travel Blog, BGC Condo For Rent"
+        keywords="Philippines Luxury Travel, AI Travel Planner, HippoHomes PH, Boracay Resorts, Palawan Private Islands, Siargao Villas, Luxury Real Estate Philippines, BGC Condos for Rent, Manila Investment Property, El Nido Travel Guide"
         image="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1200&auto=format&fit=crop"
       />
 
@@ -44,6 +45,11 @@ const App: React.FC = () => {
         
         {/* New Promotional Section for Holidays */}
         <SeasonalFeature />
+
+        {/* About Us Section */}
+        <div id={Section.ABOUT}>
+            <AboutSection />
+        </div>
         
         <div id={Section.BLOG}>
             <BlogSection />

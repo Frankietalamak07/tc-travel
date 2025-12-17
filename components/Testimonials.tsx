@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
@@ -26,8 +26,36 @@ const testimonials = [
 ];
 
 export const Testimonials: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Trigger only once
+        }
+      },
+      {
+        threshold: 0.1, // Trigger when 10% is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="py-24 bg-white relative overflow-hidden border-b border-slate-100">
+    <section 
+      ref={sectionRef} 
+      className="py-24 bg-white relative overflow-hidden border-b border-slate-100"
+    >
       {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Subtle Grid Pattern */}
@@ -49,7 +77,7 @@ export const Testimonials: React.FC = () => {
         </svg>
       </div>
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className={`container mx-auto px-6 relative z-10 transition-all duration-1000 ease-out transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-deep-ocean mb-4">What Our Travelers Say</h2>
           <div className="h-1 w-24 bg-tropical-teal mx-auto rounded-full mb-4"></div>
